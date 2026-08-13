@@ -5,15 +5,23 @@ import { cn } from "@/lib/utils";
 export function Wordmark({ className }: { className?: string }) {
   return (
     <Link aria-label="Syntrx home" className={cn("inline-flex items-center gap-3", className)} href="/">
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[linear-gradient(180deg,#d9fbfb_0%,#f5ffff_100%)] shadow-[0_10px_25px_rgba(15,39,66,0.08)]">
-        <span className="grid h-5 w-5 grid-cols-2 gap-0.5">
-          <span className="rounded-[4px] bg-[var(--color-accent)]" />
-          <span className="rounded-[4px] bg-[var(--color-accent-soft)]" />
-          <span className="rounded-[4px] bg-[var(--color-accent-soft)]" />
-          <span className="rounded-[4px] bg-[var(--color-text)]" />
-        </span>
+      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-brand)] shadow-[0_10px_25px_rgba(1,187,182,0.18)]">
+        <svg
+          aria-hidden="true"
+          className="h-5 w-5 text-white"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2.25"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+          <path d="m2 12 10 5 10-5" />
+          <path d="m2 17 10 5 10-5" />
+        </svg>
       </span>
-      <span className="text-xl font-semibold tracking-tight text-[var(--color-text)]">Syntrx</span>
+      <span className="text-xl font-semibold tracking-tight text-[var(--color-brand)]">Syntrx</span>
     </Link>
   );
 }
