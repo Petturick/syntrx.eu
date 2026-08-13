@@ -17,7 +17,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "border border-transparent bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-accent-strong)]",
+    "border border-transparent bg-[var(--color-accent)] text-[var(--color-text)] hover:bg-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-accent-strong)]",
   secondary:
     "border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-surface)]",
   ghost:
@@ -48,11 +48,7 @@ export function ButtonLink({
     className,
   );
 
-  const content = (
-    <>
-      {loading ? "Laden…" : children}
-    </>
-  );
+  const content = <>{loading ? "Laden…" : children}</>;
 
   if (disabled) {
     return (

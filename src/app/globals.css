@@ -8,10 +8,11 @@
   --color-border: #dce5ed;
   --color-surface: #f6f8fb;
   --color-surface-strong: #eef3f7;
-  --color-accent: #0f8b8d;
-  --color-accent-strong: #0b7285;
-  --color-accent-soft: #daf6f4;
-  --color-cyan: #06b6d4;
+  --color-brand: #01bbb6;
+  --color-accent: var(--color-brand);
+  --color-accent-strong: #01aaa5;
+  --color-accent-soft: #d9f7f6;
+  --color-cyan: var(--color-brand);
 }
 
 * {
@@ -38,7 +39,7 @@ body {
 }
 
 ::selection {
-  background: rgba(13, 148, 136, 0.15);
+  background: rgba(1, 187, 182, 0.16);
 }
 
 a {

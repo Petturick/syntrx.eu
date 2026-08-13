@@ -36,8 +36,8 @@ export function Footer() {
         ))}
       </Container>
       <Container className="flex flex-col gap-4 border-t border-[var(--color-border)] py-6 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Syntrx. Tijdelijke marketingwebsite voor review en verdere merkuitwerking.</p>
-        <p>Vervang de tijdelijke woordmerkcomponent zodra het definitieve logo beschikbaar is.</p>
+        <p>© {new Date().getFullYear()} Syntrx. Product Information Management voor B2B organisaties.</p>
+        <p>Corporate platform: syntrx.eu · SaaS omgeving: app.syntrx.eu</p>
       </Container>
     </footer>
   );
