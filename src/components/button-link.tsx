@@ -67,7 +67,7 @@ export function ButtonLink({
       <a
         className={baseClassName}
         href={href}
-        rel={newTab ? "noreferrer noopener" : undefined}
+        rel="noreferrer noopener"
         target={newTab ? "_blank" : undefined}
       >
         {content}

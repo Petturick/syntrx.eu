@@ -6,7 +6,6 @@ import { CtaSection } from "@/components/cta-section";
 import { PricingCard } from "@/components/pricing-card";
 import { SectionHeader } from "@/components/section-header";
 import { createMetadata } from "@/lib/metadata";
-import { cn } from "@/lib/utils";
 
 export const metadata = createMetadata({
   title: "Pricing",
@@ -38,7 +37,6 @@ export default async function PricingPage({
             ].map(([value, label]) => (
               <ButtonLink
                 key={value}
-                className={cn(billing === value ? "" : "")}
                 href={`/pricing?billing=${value}`}
                 variant={billing === value ? "primary" : "secondary"}
               >

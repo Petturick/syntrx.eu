@@ -99,7 +99,7 @@ export const platformModules = [
 export const solutionSegments = [
   {
     title: "E-commerce",
-    description: "Centraliseer productinformatie en versneld contentupdates over meerdere storefronts en teams.",
+    description: "Centraliseer productinformatie en versnel contentupdates over meerdere storefronts en teams.",
     outcome: "Minder handmatige synchronisatie tussen backoffice, content en commerce.",
   },
   {
