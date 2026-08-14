@@ -4,9 +4,7 @@ import { Container } from "@/components/container";
 import { DashboardPreview } from "@/components/dashboard-preview";
 import { FeatureCard } from "@/components/feature-card";
 import { PageHero } from "@/components/page-hero";
-import { PricingCard } from "@/components/pricing-card";
 import { SectionHeader } from "@/components/section-header";
-import { pricingPlans } from "@/config/pricing";
 import { siteConfig } from "@/config/site";
 import { benefits, platformCapabilities, threeSteps } from "@/content/marketing";
 import { createMetadata } from "@/lib/metadata";
@@ -17,6 +15,13 @@ export const metadata = createMetadata({
     "Syntrx centraliseert productdata, feeds, pricing en multi company control in één professioneel B2B SaaS platform.",
   path: "/",
 });
+
+const planOverview = [
+  ["Core", "Voor kleinere catalogi"],
+  ["Growth", "Voor groeiende commerce teams"],
+  ["Scale", "Voor grotere volumes en automatisering"],
+  ["Enterprise", "Voor governance, SSO en maatwerk"],
+] as const;
 
 export default function HomePage() {
   return (
@@ -65,21 +70,36 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-16 sm:py-20">
         <Container>
-          <SectionHeader
-            eyebrow="Prijzen"
-            title="Duidelijke plannen voor catalogus, markten en schaal"
-            description="Kies een basis die past bij het huidige volume en groei door zonder opnieuw te beginnen. Growth is de standaard voor groeiende commerce teams."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} />
-            ))}
+          <div className="overflow-hidden rounded-3xl border border-[var(--color-border)] bg-white shadow-[0_22px_64px_rgba(7,16,31,0.08)] lg:grid lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="p-7 sm:p-10 lg:p-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">Prijzen</p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
+                Vergelijk alle plannen op één duidelijke pagina
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--color-muted)]">
+                De homepage geeft alleen de hoofdlijn. Bedragen, limieten, planverschillen en veelgestelde vragen staan overzichtelijk bij elkaar op de aparte prijzenpagina.
+              </p>
+              <div className="mt-8">
+                <ButtonLink className="brand-gradient shadow-[0_10px_28px_rgba(47,109,232,0.2)] hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_16px_36px_rgba(47,109,232,0.3)]" href="/pricing" size="lg">
+                  Bekijk prijzen en plannen
+                </ButtonLink>
+              </div>
+            </div>
+            <div className="relative bg-[var(--color-navy-soft)] p-7 text-white sm:p-10 lg:p-12">
+              <div aria-hidden="true" className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[var(--color-cyan)]/10 blur-3xl" />
+              <p className="brand-gradient-text relative text-sm font-semibold uppercase tracking-[0.22em]">Van Core tot Enterprise</p>
+              <div className="relative mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {planOverview.map(([name, description]) => (
+                  <div key={name} className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 transition-colors hover:border-white/20 hover:bg-white/[0.08]">
+                    <p className="font-semibold text-white">{name}</p>
+                    <p className="mt-1 text-sm leading-6 text-[var(--color-on-dark-muted)]">{description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <p className="mt-6 text-sm leading-7 text-[var(--color-muted)]">
-            De getoonde bedragen zijn de afgesproken maandelijkse licentieprijzen. Enterprise start vanaf het genoemde bedrag en wordt op scope ingericht.
-          </p>
         </Container>
       </section>
 

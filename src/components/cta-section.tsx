@@ -27,8 +27,21 @@ export function CtaSection({
             <p className="mt-4 text-base leading-7 text-[var(--color-on-dark-muted)] sm:text-lg">{description}</p>
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
-            <ButtonLink className="brand-gradient" href={primaryHref} size="lg">{primaryLabel}</ButtonLink>
-            <ButtonLink className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:ring-white/60 focus-visible:ring-offset-[var(--color-navy-soft)]" href={secondaryHref} size="lg" variant="secondary">{secondaryLabel}</ButtonLink>
+            <ButtonLink
+              className="brand-gradient shadow-[0_10px_28px_rgba(47,109,232,0.24)] hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_16px_36px_rgba(47,109,232,0.34)]"
+              href={primaryHref}
+              size="lg"
+            >
+              {primaryLabel}
+            </ButtonLink>
+            <ButtonLink
+              className="shadow-[0_8px_22px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(0,0,0,0.2)] focus-visible:ring-offset-[var(--color-navy-soft)]"
+              href={secondaryHref}
+              size="lg"
+              variant="inverse"
+            >
+              {secondaryLabel}
+            </ButtonLink>
           </div>
         </div>
       </Container>
