@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { pricingPlans, type BillingPeriod } from "@/config/pricing";
 import { PricingCard } from "@/components/pricing-card";
 
 export function PricingSelector() {
   const [billing, setBilling] = useState<BillingPeriod>("maand");
-
-  useEffect(() => {
-    const selected = new URLSearchParams(window.location.search).get("billing");
-    if (selected === "jaar") {
-      setBilling("jaar");
-    }
-  }, []);
 
   const selectBilling = (period: BillingPeriod) => {
     setBilling(period);
