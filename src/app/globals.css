@@ -3,21 +3,15 @@
 :root {
   color-scheme: light;
   --background: #ffffff;
-  --color-text: #0d1728;
-  --color-muted: #667085;
-  --color-border: #dfe5ec;
+  --color-text: #0f2742;
+  --color-muted: #5d6c7c;
+  --color-border: #dce5ed;
   --color-surface: #f6f8fb;
-  --color-surface-strong: #edf2f7;
-  --color-brand: #2f6de8;
-  --color-accent: #2f6de8;
-  --color-accent-strong: #1e5bd4;
-  --color-accent-soft: #eaf1ff;
-  --color-cyan: #12a7bd;
-  --color-navy: #07101f;
-  --color-navy-soft: #0d182b;
-  --color-navy-border: #1e2b40;
-  --color-on-dark: #f8fafc;
-  --color-on-dark-muted: #aab5c5;
+  --color-surface-strong: #eef3f7;
+  --color-accent: #0f8b8d;
+  --color-accent-strong: #0b7285;
+  --color-accent-soft: #daf6f4;
+  --color-cyan: #06b6d4;
 }
 
 * {
@@ -28,10 +22,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-}
-
-html {
-  scroll-padding-top: 6rem;
 }
 
 body {
@@ -48,25 +38,10 @@ body {
 }
 
 ::selection {
-  background: rgba(47, 109, 232, 0.18);
+  background: rgba(13, 148, 136, 0.15);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.brand-gradient {
-  background-image: linear-gradient(100deg, var(--color-accent) 0%, var(--color-cyan) 100%);
-}
-
-.brand-gradient-text {
-  background-image: linear-gradient(100deg, #71a4ff 0%, #52d1df 100%);
-  background-clip: text;
-  color: transparent;
 }

@@ -26,10 +26,10 @@ export function Navigation({ mobile = false }: { mobile?: boolean }) {
             key={item.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "shrink-0 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-navy)]",
+              "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
               active
-                ? "bg-white/[0.12] text-white"
-                : "text-[var(--color-on-dark-muted)] hover:bg-white/[0.08] hover:text-white",
+                ? "bg-[var(--color-surface-strong)] text-[var(--color-text)]"
+                : "text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]",
             )}
             href={item.href}
           >

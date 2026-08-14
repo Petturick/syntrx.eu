@@ -1,61 +1,73 @@
+import { comparisonRows, pricingFaq, pricingPlans, type BillingPeriod } from "@/config/pricing";
+import { siteConfig } from "@/config/site";
 import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
-import { PageHero } from "@/components/page-hero";
-import { PricingSelector } from "@/components/pricing-selector";
+import { PricingCard } from "@/components/pricing-card";
 import { SectionHeader } from "@/components/section-header";
-import { comparisonRows, pricingFaq, pricingPlans } from "@/config/pricing";
-import { siteConfig } from "@/config/site";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
-  title: "Prijzen",
-  description: "Bekijk de Syntrx plannen Core, Growth, Scale en Enterprise met de afgesproken maandprijzen en limieten.",
+  title: "Pricing",
+  description: "Bekijk de prijsarchitectuur van Syntrx met centrale planconfiguratie, maand- en jaarweergave en featurevergelijking.",
   path: "/pricing",
 });
 
-export default function PricingPage() {
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ billing?: string }>;
+}) {
+  const params = await searchParams;
+  const billing: BillingPeriod = params.billing === "jaar" ? "jaar" : "maand";
+
   return (
     <>
-      <PageHero
-        eyebrow="Prijzen"
-        title="Een Syntrx plan dat past bij uw catalogus en groei."
-        description="De plannen verschillen op productvolume, markten, feeds, opslag, API gebruik, AI en connectoren. Zo betaalt u voor de schaal die u daadwerkelijk nodig heeft."
-        actions={
-          <>
-            <ButtonLink className="brand-gradient" href={siteConfig.demoHref} size="lg">Plan een demo</ButtonLink>
-            <ButtonLink className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:ring-white/60 focus-visible:ring-offset-[var(--color-navy)]" href="/oplossingen" size="lg" variant="secondary">Bekijk oplossingen</ButtonLink>
-          </>
-        }
-      />
-
-      <section className="py-20 sm:py-24">
+      <section className="py-16 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Maandelijkse licentie"
-            title="Core, Growth, Scale of Enterprise"
-            description="Growth is de standaard commerciële propositie. Core past bij kleinere catalogi, Scale bij grotere volumes en Enterprise bij multi company, SSO en maatwerk."
+            eyebrow="Pricing"
+            title="Een rustige prijsarchitectuur voor verschillende groeifases"
+            description="Plannen, bedragen en billing weergave worden centraal beheerd zodat Syntrx pricing later zonder componentwijzigingen kan worden doorontwikkeld."
           />
-          <PricingSelector />
-          <p className="mt-6 max-w-4xl text-sm leading-7 text-[var(--color-muted)]">
-            De getoonde bedragen zijn de afgesproken maandelijkse licentieprijzen. De definitieve inrichting wordt afgestemd op catalogus, markten, feeds, integraties en governance.
+          <div className="mt-8 flex flex-wrap gap-3">
+            {[
+              ["maand", "Maandelijks"],
+              ["jaar", "Jaarlijks"],
+            ].map(([value, label]) => (
+              <ButtonLink
+                key={value}
+                href={`/pricing?billing=${value}`}
+                variant={billing === value ? "primary" : "secondary"}
+              >
+                {label}
+              </ButtonLink>
+            ))}
+          </div>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-muted)]">
+            Jaarlijkse weergave toont een maandprijs bij jaarfacturatie. Deze release implementeert geen checkout of betalingen.
           </p>
+          <div className="mt-12 grid gap-6 lg:grid-cols-4">
+            {pricingPlans.map((plan) => (
+              <PricingCard key={plan.name} billing={billing} plan={plan} />
+            ))}
+          </div>
         </Container>
       </section>
 
-      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
+      <section className="bg-[var(--color-surface)] py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Vergelijken"
-            title="De afgesproken limieten per plan"
-            description="Vergelijk de volumes en commerciële mogelijkheden die centraal in de Syntrx prijsbasis zijn vastgelegd."
+            eyebrow="Vergelijking"
+            title="Bekijk de verschillen per plan"
+            description="Gebruik de vergelijking om te bespreken welke mate van governance, pricing intelligence en integratie-orkestratie nodig is voor uw organisatie."
           />
-          <div className="mt-12 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_18px_50px_rgba(7,16,31,0.06)]">
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-white shadow-[0_18px_40px_rgba(15,39,66,0.05)]">
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[var(--color-border)] bg-[var(--color-navy-soft)] text-white">
-                    <th className="px-6 py-4 font-semibold">Onderdeel</th>
+                  <tr className="border-b border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)]">
+                    <th className="px-6 py-4 font-semibold">Capability</th>
                     {pricingPlans.map((plan) => (
                       <th key={plan.name} className="px-6 py-4 font-semibold">{plan.name}</th>
                     ))}
@@ -63,10 +75,10 @@ export default function PricingPage() {
                 </thead>
                 <tbody>
                   {comparisonRows.map((row) => (
-                    <tr key={row.label} className="border-b border-[var(--color-border)] last:border-b-0 even:bg-[var(--color-surface)]/70">
-                      <th className="whitespace-nowrap px-6 py-4 font-medium text-[var(--color-text)]">{row.label}</th>
+                    <tr key={row.label} className="border-b border-[var(--color-border)] last:border-b-0">
+                      <th className="px-6 py-4 font-medium text-[var(--color-text)]">{row.label}</th>
                       {row.values.map((value, index) => (
-                        <td key={`${row.label}-${pricingPlans[index].name}`} className="whitespace-nowrap px-6 py-4 text-[var(--color-muted)]">{value}</td>
+                        <td key={`${row.label}-${pricingPlans[index].name}`} className="px-6 py-4 text-[var(--color-muted)]">{value}</td>
                       ))}
                     </tr>
                   ))}
@@ -80,17 +92,14 @@ export default function PricingPage() {
       <section className="py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Veelgestelde vragen"
-            title="Praktische vragen over het kiezen van een plan"
-            description="Het volume bepaalt de basis. De benodigde workflows, connectoren, organisatiestructuur en support bepalen of een hoger plan logisch is."
+            eyebrow="FAQ"
+            title="Veelgestelde vragen over pricing en implementatie"
+            description="De antwoorden hieronder zijn compact gehouden en kunnen later worden uitgebreid met diepere commerciële en technische documentatie."
           />
           <div className="mt-10 space-y-4">
             {pricingFaq.map((item) => (
-              <details key={item.question} className="group rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_14px_40px_rgba(7,16,31,0.04)]">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-[var(--color-text)]">
-                  {item.question}
-                  <span aria-hidden="true" className="text-2xl font-light text-[var(--color-accent-strong)] transition group-open:rotate-45">+</span>
-                </summary>
+              <details key={item.question} className="rounded-3xl border border-[var(--color-border)] bg-white p-6 shadow-[0_18px_40px_rgba(15,39,66,0.05)]">
+                <summary className="cursor-pointer list-none text-lg font-semibold text-[var(--color-text)]">{item.question}</summary>
                 <p className="mt-4 max-w-4xl text-sm leading-7 text-[var(--color-muted)]">{item.answer}</p>
               </details>
             ))}
@@ -99,12 +108,12 @@ export default function PricingPage() {
       </section>
 
       <CtaSection
-        title="Kies het plan op basis van uw werkelijke operatie"
-        description="Tijdens een demo bepalen we welk volume, welke markten, feeds, connectoren en governance u nodig heeft."
+        title="Bespreek welk plan past bij uw datastructuur en governance"
+        description="Gebruik pricing als startpunt voor een gesprek over modules, integraties en operationele volwassenheid."
         primaryLabel="Plan een demo"
         primaryHref={siteConfig.demoHref}
         secondaryLabel="Neem contact op"
-        secondaryHref="/contact"
+        secondaryHref="/contact#demo-aanvraag"
       />
     </>
   );

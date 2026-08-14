@@ -46,7 +46,7 @@ export const platformCapabilities = [
   },
   {
     title: "API Integraties",
-    description: "Koppel ERP, commerce, leveranciersdata en interne systemen via API’s, webhooks en importflows.",
+    description: "Koppel ERP, commerce, leveranciersdata en interne systemen via API's, webhooks en importflows.",
     bullets: ["REST API", "Webhooks", "Import pipelines"],
   },
 ];
@@ -147,7 +147,7 @@ export const integrationAreas = [
     description: "Importeer leveranciersdata, harmoniseer velden en keur wijzigingen gestructureerd goed.",
   },
   {
-    title: "API’s",
+    title: "API's",
     description: "Gebruik API-first koppelingen voor bidirectionele synchronisatie en procesautomatisering.",
   },
   {

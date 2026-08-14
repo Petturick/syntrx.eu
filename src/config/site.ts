@@ -7,21 +7,21 @@ export const siteConfig = {
   appUrl: process.env.NEXT_PUBLIC_SYNTRX_APP_URL ?? "https://app.syntrx.eu",
   demoHref: "/contact#demo-aanvraag",
   primaryCtaLabel: "Plan een demo",
-  secondaryCtaLabel: "Bekijk oplossingen",
+  secondaryCtaLabel: "Bekijk het platform",
   navigation: [
+    { label: "Product", href: "/product" },
     { label: "Oplossingen", href: "/oplossingen" },
     { label: "Integraties", href: "/integraties" },
-    { label: "Prijzen", href: "/pricing" },
-    { label: "Over Syntrx", href: "/over-syntrx" },
-    { label: "Contact", href: "/contact" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Resources", href: "/resources" },
   ],
   footerNavigation: [
     {
       title: "Platform",
       links: [
-        { label: "Oplossingen", href: "/oplossingen" },
+        { label: "Product", href: "/product" },
         { label: "Integraties", href: "/integraties" },
-        { label: "Prijzen", href: "/pricing" },
+        { label: "Pricing", href: "/pricing" },
       ],
     },
     {
@@ -29,6 +29,7 @@ export const siteConfig = {
       links: [
         { label: "Over Syntrx", href: "/over-syntrx" },
         { label: "Contact", href: "/contact" },
+        { label: "Resources", href: "/resources" },
       ],
     },
   ],
