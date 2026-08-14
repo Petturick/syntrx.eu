@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { resourceCategories, resources } from "@/content/marketing";
 import { ResourceCard } from "@/components/resource-card";
 
 export function ResourceFilter() {
   const [category, setCategory] = useState("alle");
-
-  useEffect(() => {
-    const selected = new URLSearchParams(window.location.search).get("categorie");
-    if (selected && resourceCategories.some((item) => item.value === selected)) {
-      setCategory(selected);
-    }
-  }, []);
 
   const filteredResources = useMemo(
     () => (category === "alle" ? resources : resources.filter((item) => item.category === category)),
