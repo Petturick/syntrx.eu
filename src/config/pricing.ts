@@ -1,130 +1,116 @@
-export type BillingPeriod = "maand" | "jaar";
-
 export type Plan = {
   name: string;
   tagline: string;
   description: string;
   recommended?: boolean;
+  price: string;
+  pricePrefix?: string;
   features: string[];
-  price: Record<BillingPeriod, string>;
   ctaLabel: string;
   href: string;
-  stripePriceIds: Record<BillingPeriod, string | null>;
 };
 
-// NOTE: Replace these placeholder amounts and Stripe identifiers before launch.
-// Final pricing and Stripe identifiers must come from this central Syntrx pricing
-// configuration and must not be hardcoded inside presentational components.
 export const pricingPlans: Plan[] = [
   {
-    name: "Free",
-    tagline: "Voor verkenning en interne validatie",
-    description: "Start met een beperkte productset en verken de kern van het platform.",
-    price: { maand: "€0", jaar: "€0" },
+    name: "Core",
+    tagline: "Voor kleinere productcatalogi",
+    description: "Een complete PIM basis voor teams die productdata centraal willen beheren en gecontroleerd willen importeren.",
+    price: "€395",
     features: [
-      "1 broncatalogus",
-      "Basisimport",
-      "Standaard datakwaliteitscontroles",
-      "Community support",
+      "Tot 5.000 producten",
+      "2 markten en 2 feeds",
+      "25 GB opslag",
+      "10.000 API calls per maand",
+      "PIM, import en export",
+      "Datakwaliteit en basisworkflows",
     ],
-    ctaLabel: "Bekijk mogelijkheden",
+    ctaLabel: "Bespreek Core",
     href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
   },
   {
     name: "Growth",
-    tagline: "Voor teams die productdata willen centraliseren",
-    description: "Breng productinformatie, feeds en operationele controles samen in één workflow.",
-    price: { maand: "€495", jaar: "€415" },
+    tagline: "Voor groeiende commerce teams",
+    description: "De standaard commerciële propositie met meer markten, geplande feeds, AI ondersteuning en uitgebreide workflows.",
+    recommended: true,
+    price: "€795",
     features: [
-      "PIM en feedbeheer",
-      "Kanaalspecifieke exports",
-      "Workflow taken en goedkeuringen",
-      "Standaard integratiestructuur",
+      "Tot 25.000 producten",
+      "5 markten en 10 feeds",
+      "100 GB opslag",
+      "100.000 API calls per maand",
+      "500 AI credits en 2 connectoren",
+      "Geavanceerde workflows en auditlog",
     ],
-    ctaLabel: "Plan een demo",
+    ctaLabel: "Bespreek Growth",
     href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
   },
   {
-    name: "Pro",
-    tagline: "Voor organisaties met pricing en multi company complexiteit",
-    description: "Combineer productdata, pricing intelligence en governance over meerdere labels of landen.",
-    recommended: true,
-    price: { maand: "€1.250", jaar: "€1.050" },
+    name: "Scale",
+    tagline: "Voor grotere catalogi en automatisering",
+    description: "Voor organisaties met meerdere kanalen, hoge volumes, premium connectoren en behoefte aan prioriteit in support.",
+    price: "€1.495",
     features: [
-      "Alles in Growth",
-      "Pricing intelligence",
-      "Multi company beheer",
-      "API- en webhook orkestratie",
+      "Tot 100.000 producten",
+      "15 markten en 30 feeds",
+      "500 GB opslag",
+      "1.000.000 API calls per maand",
+      "2.500 AI credits en 10 connectoren",
+      "Premium connectoren en priority support",
     ],
-    ctaLabel: "Plan een demo",
+    ctaLabel: "Bespreek Scale",
     href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
   },
   {
     name: "Enterprise",
-    tagline: "Voor schaal, governance en maatwerkprocessen",
-    description: "Stem data governance, integraties en automatisering af op enterprise vereisten.",
-    price: { maand: "Op aanvraag", jaar: "Op aanvraag" },
+    tagline: "Voor governance, SSO en maatwerk",
+    description: "Voor complexe organisaties die contractuele limieten, multi company beheer, SSO, maatwerkintegraties en een SLA nodig hebben.",
+    pricePrefix: "vanaf",
+    price: "€2.500",
     features: [
-      "Alles in Pro",
-      "Dedicated onboarding",
-      "Geavanceerde autorisaties",
-      "Architectuur voor maatwerkintegraties",
+      "Producten en markten op maat",
+      "Feeds en opslag op maat",
+      "API, AI en connectoren op maat",
+      "Multi company beheer",
+      "Single sign on",
+      "Maatwerkcontract en SLA",
     ],
-    ctaLabel: "Bespreek enterprise",
+    ctaLabel: "Bespreek Enterprise",
     href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
   },
 ];
 
 export const comparisonRows = [
-  {
-    label: "PIM en productmodellering",
-    values: ["Basis", "Uitgebreid", "Uitgebreid", "Uitgebreid"],
-  },
-  {
-    label: "Feedbeheer per kanaal",
-    values: ["—", "Ja", "Ja", "Ja"],
-  },
-  {
-    label: "Pricing intelligence",
-    values: ["—", "—", "Ja", "Ja"],
-  },
-  {
-    label: "Multi company governance",
-    values: ["—", "—", "Ja", "Ja"],
-  },
-  {
-    label: "API's en webhooks",
-    values: ["Basis", "Basis", "Geavanceerd", "Geavanceerd"],
-  },
-  {
-    label: "Implementatiebegeleiding",
-    values: ["Self-service", "Remote", "Priority", "Dedicated"],
-  },
+  { label: "Producten", values: ["5.000", "25.000", "100.000", "Maatwerk"] },
+  { label: "Markten", values: ["2", "5", "15", "Maatwerk"] },
+  { label: "Feeds", values: ["2", "10", "30", "Maatwerk"] },
+  { label: "Opslag", values: ["25 GB", "100 GB", "500 GB", "Maatwerk"] },
+  { label: "API calls per maand", values: ["10.000", "100.000", "1.000.000", "Maatwerk"] },
+  { label: "AI credits per maand", values: ["Niet inbegrepen", "500", "2.500", "Maatwerk"] },
+  { label: "Connectoren", values: ["Niet inbegrepen", "2", "10", "Maatwerk"] },
+  { label: "Multi company", values: ["Niet inbegrepen", "Niet inbegrepen", "Niet inbegrepen", "Inbegrepen"] },
+  { label: "SSO", values: ["Niet inbegrepen", "Niet inbegrepen", "Niet inbegrepen", "Inbegrepen"] },
+  { label: "Support", values: ["Standaard", "Standaard", "Priority", "SLA"] },
 ];
 
 export const pricingFaq = [
   {
-    question: "Kan Syntrx per entiteit of land worden ingericht?",
+    question: "Welk Syntrx plan past bij mijn organisatie?",
     answer:
-      "Ja. De architectuur is voorbereid op multi company scenario's met gedeelde standaarden en lokale uitzonderingen.",
+      "Core past bij kleinere catalogi, Growth is de standaard voor groeiende commerce teams en Scale is bedoeld voor hogere volumes en meer automatisering. Enterprise is voor multi company, SSO en contractueel maatwerk.",
   },
   {
-    question: "Zitten integraties in ieder plan?",
+    question: "Kan ik later naar een groter plan overstappen?",
     answer:
-      "Iedere editie ondersteunt koppelingen, maar het niveau van orkestratie, governance en maatwerk verschilt per plan.",
+      "Ja. De plannen bouwen op elkaar voort. De benodigde limieten, functionaliteit en migratiestap worden vooraf afgestemd zodat productdata en feeds beschikbaar blijven.",
   },
   {
-    question: "Is er een online checkout of Stripe flow?",
+    question: "Wanneer is Enterprise nodig?",
     answer:
-      "Nee. Deze eerste versie toont alleen de prijsarchitectuur. Commerciële prijzen en Stripe identifiers worden later centraal geconfigureerd.",
+      "Enterprise is bedoeld voor organisaties die multi company beheer, SSO, maatwerklimieten, complexe integraties of contractuele supportafspraken nodig hebben.",
   },
   {
-    question: "Ondersteunt Syntrx onboarding voor teams en leveranciers?",
+    question: "Kan ik Syntrx eerst in een demo bekijken?",
     answer:
-      "Ja. Het platform is gericht op gecontroleerde import, validatie en publicatie over interne teams en externe dataleveranciers.",
+      "Ja. Tijdens een demo bekijken we uw catalogus, markten, feeds, integraties en governance zodat het plan niet alleen op volume maar ook op de werkelijke inrichting wordt gekozen.",
   },
 ];

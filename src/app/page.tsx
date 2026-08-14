@@ -1,13 +1,14 @@
-import { siteConfig } from "@/config/site";
-import { pricingPlans } from "@/config/pricing";
-import { benefits, platformCapabilities, threeSteps, trustMarks } from "@/content/marketing";
 import { ButtonLink } from "@/components/button-link";
-import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
+import { Container } from "@/components/container";
 import { DashboardPreview } from "@/components/dashboard-preview";
 import { FeatureCard } from "@/components/feature-card";
+import { PageHero } from "@/components/page-hero";
 import { PricingCard } from "@/components/pricing-card";
 import { SectionHeader } from "@/components/section-header";
+import { pricingPlans } from "@/config/pricing";
+import { siteConfig } from "@/config/site";
+import { benefits, platformCapabilities, threeSteps } from "@/content/marketing";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
@@ -20,51 +21,28 @@ export const metadata = createMetadata({
 export default function HomePage() {
   return (
     <>
-      <section className="overflow-hidden py-16 sm:py-24">
-        <Container>
-          <div className="grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">Syntrx platform</p>
-              <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight text-[var(--color-text)] sm:text-6xl">
-                Centraliseer productdata, feeds, pricing en multi company control.
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-muted)]">
-                Syntrx brengt PIM, product data management, feedbeheer, pricing intelligence, datakwaliteit en integraties samen in één rustige enterprise interface.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <ButtonLink href={siteConfig.demoHref} size="lg">Plan een demo</ButtonLink>
-                <ButtonLink href="/product" size="lg" variant="secondary">Bekijk het platform</ButtonLink>
-              </div>
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                {benefits.map((benefit) => (
-                  <div key={benefit.title} className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5">
-                    <h2 className="text-base font-semibold text-[var(--color-text)]">{benefit.title}</h2>
-                    <p className="mt-2 text-sm leading-7 text-[var(--color-muted)]">{benefit.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <DashboardPreview />
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="Product Information Management"
+        title="Eén bron voor productdata, feeds en digitale groei."
+        description="Syntrx brengt productinformatie, datakwaliteit, workflows, feedbeheer, pricing intelligence en integraties samen in één herkenbare en beheersbare omgeving."
+        actions={
+          <>
+            <ButtonLink className="brand-gradient" href={siteConfig.demoHref} size="lg">Plan een demo</ButtonLink>
+            <ButtonLink className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:ring-white/60 focus-visible:ring-offset-[var(--color-navy)]" href="/oplossingen" size="lg" variant="secondary">Bekijk oplossingen</ButtonLink>
+          </>
+        }
+        visual={<DashboardPreview />}
+      />
 
-      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-10">
+      <section className="border-b border-[var(--color-border)] bg-white py-8">
         <Container>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">Trust section placeholder</p>
-              <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--color-muted)]">
-                Plaats voor toekomstige klant- of partnermarken. Deze versie gebruikt bewust alleen neutrale placeholders en geen claims of fictieve referenties.
-              </p>
-            </div>
-            <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-5">
-              {trustMarks.map((mark) => (
-                <div key={mark} className="rounded-2xl border border-[var(--color-border)] bg-white px-4 py-4 text-center text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-muted)]">
-                  {mark}
-                </div>
-              ))}
-            </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {benefits.map((benefit) => (
+              <article key={benefit.title} className="border-l-2 border-[var(--color-accent)] pl-5">
+                <h2 className="text-base font-semibold text-[var(--color-text)]">{benefit.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{benefit.description}</p>
+              </article>
+            ))}
           </div>
         </Container>
       </section>
@@ -72,46 +50,52 @@ export default function HomePage() {
       <section className="py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Platform capabilities"
-            title="Modules die samenwerken rond één centrale bron"
-            description="Gebruik Syntrx als operationele laag voor het modelleren, valideren, verrijken en publiceren van productinformatie over teams en systemen heen."
+            eyebrow="Oplossingen"
+            title="Alle onderdelen werken vanuit dezelfde productcontext"
+            description="Geen losse tools per taak, maar één samenhangende werkwijze voor verzamelen, verrijken, controleren en publiceren."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {platformCapabilities.map((capability) => (
               <FeatureCard key={capability.title} {...capability} />
             ))}
           </div>
+          <div className="mt-10">
+            <ButtonLink href="/oplossingen" variant="secondary">Alle oplossingen bekijken</ButtonLink>
+          </div>
         </Container>
       </section>
 
-      <section className="bg-[var(--color-surface)] py-20 sm:py-24">
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Pricing preview"
-            title="Een prijsarchitectuur voor teams, governance en schaal"
-            description="De eerste release toont de structuur van Syntrx pricing, met centrale configuratie voor plannen, billing en latere commerciële aansluiting."
+            eyebrow="Prijzen"
+            title="Duidelijke plannen voor catalogus, markten en schaal"
+            description="Kies een basis die past bij het huidige volume en groei door zonder opnieuw te beginnen. Growth is de standaard voor groeiende commerce teams."
           />
-          <div className="mt-12 grid gap-6 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} billing="maand" plan={plan} />
+              <PricingCard key={plan.name} plan={plan} />
             ))}
           </div>
+          <p className="mt-6 text-sm leading-7 text-[var(--color-muted)]">
+            De getoonde bedragen zijn de afgesproken maandelijkse licentieprijzen. Enterprise start vanaf het genoemde bedrag en wordt op scope ingericht.
+          </p>
         </Container>
       </section>
 
       <section className="py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Proces"
-            title="Van brondata naar gecontroleerde publicatie"
-            description="Syntrx ondersteunt een heldere flow voor import, centralisatie en distributie zodat teams minder afhankelijk zijn van losse exports en spreadsheets."
             align="center"
+            eyebrow="Werkwijze"
+            title="Van brondata naar gecontroleerde publicatie"
+            description="Syntrx maakt de route van import tot publicatie zichtbaar, controleerbaar en herhaalbaar voor alle betrokken teams."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {threeSteps.map((step, index) => (
-              <article key={step.title} className="rounded-3xl border border-[var(--color-border)] bg-white p-6 shadow-[0_18px_40px_rgba(15,39,66,0.05)]">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">Stap {index + 1}</p>
-                <h3 className="mt-4 text-2xl font-semibold text-[var(--color-text)]">{step.title}</h3>
+              <article key={step.title} className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_16px_45px_rgba(7,16,31,0.045)]">
+                <span className="brand-gradient flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold text-white">{index + 1}</span>
+                <h3 className="mt-5 text-xl font-semibold text-[var(--color-text)]">{step.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">{step.description}</p>
               </article>
             ))}
@@ -120,11 +104,11 @@ export default function HomePage() {
       </section>
 
       <CtaSection
-        title="Breng productdata, pricing en publicatieprocessen samen in één gecontroleerde omgeving"
-        description="Bekijk hoe Syntrx aansluit op uw teams, systeemlandschap en governance-eisen."
+        title="Bekijk hoe Syntrx past bij uw productdata-operatie"
+        description="We lopen uw catalogus, markten, feeds en integraties samen door en maken direct duidelijk welk plan logisch is."
         primaryLabel="Plan een demo"
         primaryHref={siteConfig.demoHref}
-        secondaryLabel="Bekijk pricing"
+        secondaryLabel="Bekijk prijzen"
         secondaryHref="/pricing"
       />
     </>

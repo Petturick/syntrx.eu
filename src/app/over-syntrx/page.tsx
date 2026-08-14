@@ -1,33 +1,42 @@
-import { siteConfig } from "@/config/site";
-import { aboutPrinciples } from "@/content/marketing";
+import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
 import { FeatureCard } from "@/components/feature-card";
+import { PageHero } from "@/components/page-hero";
 import { SectionHeader } from "@/components/section-header";
+import { siteConfig } from "@/config/site";
+import { aboutPrinciples } from "@/content/marketing";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
   title: "Over Syntrx",
-  description: "Lees meer over de positionering van Syntrx als Europees B2B SaaS platform voor productdata, feeds en pricing controle.",
+  description: "Lees waarom Syntrx is ontwikkeld voor controle over productdata, feeds, workflows, pricing en multi company processen.",
   path: "/over-syntrx",
 });
 
 export default function AboutPage() {
   return (
     <>
-      <section className="py-16 sm:py-24">
+      <PageHero
+        eyebrow="Over Syntrx"
+        title="Gebouwd om complexe productdata beheersbaar te maken."
+        description="Syntrx is ontwikkeld voor organisaties die sneller willen publiceren zonder controle over kwaliteit, verantwoordelijkheden en lokale marktverschillen te verliezen."
+        actions={
+          <>
+            <ButtonLink className="brand-gradient" href={siteConfig.demoHref} size="lg">Plan een demo</ButtonLink>
+            <ButtonLink className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:ring-white/60 focus-visible:ring-offset-[var(--color-navy)]" href="/oplossingen" size="lg" variant="secondary">Bekijk oplossingen</ButtonLink>
+          </>
+        }
+      />
+
+      <section className="py-20 sm:py-24">
         <Container>
           <SectionHeader
-            eyebrow="Over Syntrx"
-            title="Gebouwd voor organisaties die rust en controle willen in hun data-operatie"
-            description="Syntrx positioneert zich als professioneel B2B SaaS platform voor productdata management, feedbeheer, pricing intelligence en workflowgestuurde governance."
+            eyebrow="Uitgangspunten"
+            title="Rust in de operatie, duidelijkheid in de data"
+            description="De inrichting is modulair, maar de productcontext blijft centraal. Dat voorkomt nieuwe datasilo's en maakt groei over teams en landen beheersbaar."
           />
-        </Container>
-      </section>
-
-      <section className="bg-[var(--color-surface)] py-20 sm:py-24">
-        <Container>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {aboutPrinciples.map((principle) => (
               <FeatureCard key={principle.title} {...principle} />
             ))}
@@ -35,32 +44,38 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-20 sm:py-24">
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
         <Container>
-          <div className="grid gap-6 lg:grid-cols-2">
-            <article className="rounded-3xl border border-[var(--color-border)] bg-white p-8 shadow-[0_18px_40px_rgba(15,39,66,0.05)]">
-              <h2 className="text-2xl font-semibold text-[var(--color-text)]">Europese B2B SaaS uitstraling</h2>
-              <p className="mt-4 text-sm leading-7 text-[var(--color-muted)]">
-                Deze eerste marketingwebsite is opgezet met lichte surfaces, duidelijke typografie en modulaire contentconfiguratie zodat merkuitwerking later gecontroleerd kan doorgroeien.
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div className="rounded-2xl border border-[var(--color-navy-border)] bg-[var(--color-navy-soft)] p-8 text-white shadow-[0_24px_70px_rgba(7,16,31,0.16)]">
+              <p className="brand-gradient-text text-sm font-semibold uppercase tracking-[0.2em]">Pformance Lab</p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight">Een product met een duidelijke opdracht</h2>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-on-dark-muted)]">
+                Syntrx is a Pformance Lab product. Het platform combineert productmanagement, datakwaliteit en digitale distributie in één herkenbare SaaS omgeving.
               </p>
-            </article>
-            <article className="rounded-3xl border border-[var(--color-border)] bg-white p-8 shadow-[0_18px_40px_rgba(15,39,66,0.05)]">
-              <h2 className="text-2xl font-semibold text-[var(--color-text)]">Voorbereid op verdere uitbreiding</h2>
-              <p className="mt-4 text-sm leading-7 text-[var(--color-muted)]">
-                Content, pricing en navigatie zijn gescheiden van de visuele componenten om uitbreiding naar extra pages, SEO-content en echte integratie-informatie eenvoudig te houden.
+            </div>
+            <div>
+              <h2 className="text-3xl font-semibold tracking-tight text-[var(--color-text)]">Ontworpen voor de dagelijkse realiteit van B2B commerce</h2>
+              <p className="mt-5 text-base leading-8 text-[var(--color-muted)]">
+                Productdata komt uit verschillende bronnen, meerdere teams zijn verantwoordelijk en ieder kanaal stelt andere eisen. Syntrx maakt die complexiteit zichtbaar en stuurbaar zonder de gebruiker op te zadelen met een technisch ondoorzichtige interface.
               </p>
-            </article>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {["Centrale productcontext", "Heldere rollen en rechten", "Controle per markt en kanaal", "Schaalbare integraties"].map((item) => (
+                  <div key={item} className="rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-sm font-medium text-[var(--color-text)]">{item}</div>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
       <CtaSection
-        title="Werk verder aan merk, content en commerciële journeys"
-        description="Gebruik deze basis om echte cases, content, pricingdetails en het definitieve logo later gecontroleerd toe te voegen."
+        title="Maak kennis met Syntrx in uw eigen context"
+        description="We laten de omgeving zien aan de hand van uw productdata-operatie, kanalen en groeivraag."
         primaryLabel="Plan een demo"
         primaryHref={siteConfig.demoHref}
-        secondaryLabel="Neem contact op"
-        secondaryHref="/contact"
+        secondaryLabel="Bekijk prijzen"
+        secondaryHref="/pricing"
       />
     </>
   );

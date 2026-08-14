@@ -46,10 +46,12 @@ export function createMetadata({
   title,
   description,
   path,
+  noIndex = false,
 }: {
   title: string;
   description: string;
   path: string;
+  noIndex?: boolean;
 }): Metadata {
   const url = new URL(path, getSiteUrl());
 
@@ -72,5 +74,6 @@ export function createMetadata({
       title,
       description,
     },
+    robots: noIndex ? { index: false, follow: false } : undefined,
   };
 }

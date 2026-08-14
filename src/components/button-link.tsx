@@ -17,7 +17,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "border border-transparent bg-[var(--color-accent)] text-[var(--color-text)] hover:bg-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-accent-strong)]",
+    "border border-transparent bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-accent-strong)]",
   secondary:
     "border border-[var(--color-border)] bg-white text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent-strong)] focus-visible:ring-[var(--color-accent)] active:bg-[var(--color-surface)]",
   ghost:
@@ -41,7 +41,7 @@ export function ButtonLink({
   loading,
 }: ButtonLinkProps) {
   const baseClassName = cn(
-    "inline-flex items-center justify-center rounded-full font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none",
+    "inline-flex items-center justify-center rounded-xl font-medium transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:pointer-events-none",
     variants[variant],
     sizes[size],
     (disabled || loading) && "cursor-not-allowed opacity-60",

@@ -6,11 +6,9 @@ export const dynamic = "force-static";
 
 const routes = [
   "",
-  "/product",
   "/oplossingen",
   "/integraties",
   "/pricing",
-  "/resources",
   "/over-syntrx",
   "/contact",
 ];
