@@ -34,3 +34,17 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Verify static deploy output
+        run: |
+          test -f out/index.html
+          test -f out/404.html
+          test -f out/product/index.html
+          test -f out/oplossingen/index.html
+          test -f out/integraties/index.html
+          test -f out/pricing/index.html
+          test -f out/resources/index.html
+          test -f out/over-syntrx/index.html
+          test -f out/contact/index.html
+          test -f out/robots.txt
+          test -f out/sitemap.xml

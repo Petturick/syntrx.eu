@@ -1,9 +1,7 @@
-import { resourceCategories, resources } from "@/content/marketing";
 import { siteConfig } from "@/config/site";
-import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
-import { ResourceCard } from "@/components/resource-card";
+import { ResourceFilter } from "@/components/resource-filter";
 import { SectionHeader } from "@/components/section-header";
 import { createMetadata } from "@/lib/metadata";
 
@@ -13,15 +11,7 @@ export const metadata = createMetadata({
   path: "/resources",
 });
 
-export default async function ResourcesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ categorie?: string }>;
-}) {
-  const params = await searchParams;
-  const category = params.categorie ?? "alle";
-  const filteredResources = category === "alle" ? resources : resources.filter((item) => item.category === category);
-
+export default function ResourcesPage() {
   return (
     <>
       <section className="py-16 sm:py-24">
@@ -31,27 +21,7 @@ export default async function ResourcesPage({
             title="Een kenniscentrum dat klaarstaat voor groei"
             description="De contentstructuur ondersteunt blog, guides, webinars, klantverhalen, whitepapers en een helpcentrum zonder nu al lege detailpagina's te forceren."
           />
-          <div className="mt-8 flex flex-wrap gap-3">
-            {resourceCategories.map((item) => (
-              <ButtonLink
-                key={item.value}
-                href={item.value === "alle" ? "/resources" : `/resources?categorie=${item.value}`}
-                variant={category === item.value ? "primary" : "secondary"}
-              >
-                {item.label}
-              </ButtonLink>
-            ))}
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {filteredResources.map((resource) => (
-              <ResourceCard key={resource.title} {...resource} />
-            ))}
-          </div>
-          {filteredResources.length === 0 ? (
-            <div className="mt-8 rounded-3xl border border-dashed border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-sm text-[var(--color-muted)]">
-              Nog geen items in deze categorie. Voeg later content toe via de centrale resourcestructuur.
-            </div>
-          ) : null}
+          <ResourceFilter />
         </Container>
       </section>
 
