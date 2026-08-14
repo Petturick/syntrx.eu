@@ -1,9 +1,8 @@
-import { comparisonRows, pricingFaq, pricingPlans, type BillingPeriod } from "@/config/pricing";
+import { comparisonRows, pricingFaq, pricingPlans } from "@/config/pricing";
 import { siteConfig } from "@/config/site";
-import { ButtonLink } from "@/components/button-link";
 import { Container } from "@/components/container";
 import { CtaSection } from "@/components/cta-section";
-import { PricingCard } from "@/components/pricing-card";
+import { PricingSelector } from "@/components/pricing-selector";
 import { SectionHeader } from "@/components/section-header";
 import { createMetadata } from "@/lib/metadata";
 
@@ -13,14 +12,7 @@ export const metadata = createMetadata({
   path: "/pricing",
 });
 
-export default async function PricingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ billing?: string }>;
-}) {
-  const params = await searchParams;
-  const billing: BillingPeriod = params.billing === "jaar" ? "jaar" : "maand";
-
+export default function PricingPage() {
   return (
     <>
       <section className="py-16 sm:py-24">
@@ -30,28 +22,7 @@ export default async function PricingPage({
             title="Een rustige prijsarchitectuur voor verschillende groeifases"
             description="Plannen, bedragen en billing weergave worden centraal beheerd zodat Syntrx pricing later zonder componentwijzigingen kan worden doorontwikkeld."
           />
-          <div className="mt-8 flex flex-wrap gap-3">
-            {[
-              ["maand", "Maandelijks"],
-              ["jaar", "Jaarlijks"],
-            ].map(([value, label]) => (
-              <ButtonLink
-                key={value}
-                href={`/pricing?billing=${value}`}
-                variant={billing === value ? "primary" : "secondary"}
-              >
-                {label}
-              </ButtonLink>
-            ))}
-          </div>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-muted)]">
-            Jaarlijkse weergave toont een maandprijs bij jaarfacturatie. Deze release implementeert geen checkout of betalingen.
-          </p>
-          <div className="mt-12 grid gap-6 lg:grid-cols-4">
-            {pricingPlans.map((plan) => (
-              <PricingCard key={plan.name} billing={billing} plan={plan} />
-            ))}
-          </div>
+          <PricingSelector />
         </Container>
       </section>
 
