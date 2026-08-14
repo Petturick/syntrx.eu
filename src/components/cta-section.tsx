@@ -17,17 +17,18 @@ export function CtaSection({
   secondaryHref: string;
 }) {
   return (
-    <section className="py-20 sm:py-24">
+    <section className="py-16 sm:py-20">
       <Container>
-        <div className="rounded-[2rem] border border-[var(--color-border)] bg-[linear-gradient(180deg,#f8fcfd_0%,#ffffff_100%)] px-8 py-10 shadow-[0_24px_60px_rgba(15,39,66,0.06)] sm:px-12 sm:py-14">
+        <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-navy-border)] bg-[var(--color-navy-soft)] px-8 py-10 shadow-[0_24px_70px_rgba(7,16,31,0.16)] sm:px-12 sm:py-14">
+          <div aria-hidden="true" className="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[var(--color-cyan)]/10 blur-3xl" />
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">Volgende stap</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">{title}</h2>
-            <p className="mt-4 text-base leading-7 text-[var(--color-muted)] sm:text-lg">{description}</p>
+            <p className="brand-gradient-text text-sm font-semibold uppercase tracking-[0.22em]">Volgende stap</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl">{title}</h2>
+            <p className="mt-4 text-base leading-7 text-[var(--color-on-dark-muted)] sm:text-lg">{description}</p>
           </div>
           <div className="mt-8 flex flex-wrap gap-4">
-            <ButtonLink href={primaryHref} size="lg">{primaryLabel}</ButtonLink>
-            <ButtonLink href={secondaryHref} size="lg" variant="secondary">{secondaryLabel}</ButtonLink>
+            <ButtonLink className="brand-gradient" href={primaryHref} size="lg">{primaryLabel}</ButtonLink>
+            <ButtonLink className="border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10 hover:text-white focus-visible:ring-white/60 focus-visible:ring-offset-[var(--color-navy-soft)]" href={secondaryHref} size="lg" variant="secondary">{secondaryLabel}</ButtonLink>
           </div>
         </div>
       </Container>

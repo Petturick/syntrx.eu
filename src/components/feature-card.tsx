@@ -12,8 +12,8 @@ export function FeatureCard({
   className?: string;
 }) {
   return (
-    <article className={cn("rounded-3xl border border-[var(--color-border)] bg-white p-6 shadow-[0_18px_40px_rgba(15,39,66,0.05)]", className)}>
-      <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-surface)] text-[var(--color-accent-strong)]">
+    <article className={cn("rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_16px_45px_rgba(7,16,31,0.045)] transition duration-200 hover:-translate-y-0.5 hover:border-[#cbd6e4] hover:shadow-[0_20px_55px_rgba(7,16,31,0.08)]", className)}>
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--color-accent-soft)_0%,#e7f9fb_100%)] text-[var(--color-accent-strong)]">
         <span className="h-2.5 w-2.5 rounded-full bg-current" />
       </div>
       <h3 className="mt-5 text-xl font-semibold text-[var(--color-text)]">{title}</h3>
