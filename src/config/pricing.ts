@@ -1,130 +1,143 @@
 export type BillingPeriod = "maand" | "jaar";
 
 export type Plan = {
+  code: "core" | "growth" | "scale" | "enterprise";
   name: string;
   tagline: string;
-  description: string;
   recommended?: boolean;
   features: string[];
   price: Record<BillingPeriod, string>;
-  ctaLabel: string;
-  href: string;
-  stripePriceIds: Record<BillingPeriod, string | null>;
+  setupCostLabel: string;
+  trialLabel: string;
+  trialHref: string;
+  purchaseLabel: string;
+  contactHref?: string;
 };
 
-// NOTE: Replace these placeholder amounts and Stripe identifiers before launch.
-// Final pricing and Stripe identifiers must come from this central Syntrx pricing
-// configuration and must not be hardcoded inside presentational components.
 export const pricingPlans: Plan[] = [
   {
-    name: "Free",
-    tagline: "Voor verkenning en interne validatie",
-    description: "Start met een beperkte productset en verken de kern van het platform.",
-    price: { maand: "€0", jaar: "€0" },
+    code: "core",
+    name: "Start",
+    tagline: "Voor groeiende organisaties",
+    price: { maand: "€ 349", jaar: "€ 299" },
+    setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
-      "1 broncatalogus",
-      "Basisimport",
-      "Standaard datakwaliteitscontroles",
-      "Community support",
+      "250 SKU's",
+      "2 gebruikers",
+      "2 talen",
+      "Alle functies",
+      "Add-ons niet beschikbaar",
     ],
-    ctaLabel: "Bekijk mogelijkheden",
-    href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
+    trialLabel: "Probeer Syntrx",
+    trialHref: "/contact#demo-aanvraag",
+    purchaseLabel: "Koop nu",
   },
   {
-    name: "Growth",
-    tagline: "Voor teams die productdata willen centraliseren",
-    description: "Breng productinformatie, feeds en operationele controles samen in één workflow.",
-    price: { maand: "€495", jaar: "€415" },
-    features: [
-      "PIM en feedbeheer",
-      "Kanaalspecifieke exports",
-      "Workflow taken en goedkeuringen",
-      "Standaard integratiestructuur",
-    ],
-    ctaLabel: "Plan een demo",
-    href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
-  },
-  {
+    code: "growth",
     name: "Pro",
-    tagline: "Voor organisaties met pricing en multi company complexiteit",
-    description: "Combineer productdata, pricing intelligence en governance over meerdere labels of landen.",
+    tagline: "Voor grotere organisaties",
     recommended: true,
-    price: { maand: "€1.250", jaar: "€1.050" },
+    price: { maand: "€ 699", jaar: "€ 599" },
+    setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
-      "Alles in Growth",
-      "Pricing intelligence",
-      "Multi company beheer",
-      "API- en webhook orkestratie",
+      "500 SKU's",
+      "5 gebruikers",
+      "5 talen",
+      "Alle functies",
+      "Opschalen met uitbreidingen",
     ],
-    ctaLabel: "Plan een demo",
-    href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
+    trialLabel: "Probeer Syntrx",
+    trialHref: "/contact#demo-aanvraag",
+    purchaseLabel: "Koop nu",
   },
   {
-    name: "Enterprise",
-    tagline: "Voor schaal, governance en maatwerkprocessen",
-    description: "Stem data governance, integraties en automatisering af op enterprise vereisten.",
-    price: { maand: "Op aanvraag", jaar: "Op aanvraag" },
+    code: "scale",
+    name: "Pro+",
+    tagline: "Voor zeer grote organisaties",
+    price: { maand: "€ 1.049", jaar: "€ 899" },
+    setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
-      "Alles in Pro",
-      "Dedicated onboarding",
-      "Geavanceerde autorisaties",
-      "Architectuur voor maatwerkintegraties",
+      "2.500 SKU's",
+      "10 gebruikers",
+      "10 talen",
+      "Alle functies",
+      "Opschalen met uitbreidingen",
     ],
-    ctaLabel: "Bespreek enterprise",
-    href: "/contact#demo-aanvraag",
-    stripePriceIds: { maand: null, jaar: null },
+    trialLabel: "Probeer Syntrx",
+    trialHref: "/contact#demo-aanvraag",
+    purchaseLabel: "Koop nu",
+  },
+  {
+    code: "enterprise",
+    name: "Enterprise",
+    tagline: "Voor grote bedrijven",
+    price: { maand: "Aangepast", jaar: "Aangepast" },
+    setupCostLabel: "+ eenmalige implementatiekosten",
+    features: [
+      "Meer dan 2.500 SKU's",
+      "Onbeperkt aantal gebruikers",
+      "Onbeperkt talen",
+      "Alle functies",
+      "Opschalen met uitbreidingen",
+    ],
+    trialLabel: "Probeer Syntrx",
+    trialHref: "/contact#demo-aanvraag",
+    purchaseLabel: "Neem contact op",
+    contactHref: "/contact#demo-aanvraag",
   },
 ];
 
 export const comparisonRows = [
   {
-    label: "PIM en productmodellering",
-    values: ["Basis", "Uitgebreid", "Uitgebreid", "Uitgebreid"],
+    label: "SKU's",
+    values: ["250", "500", "2.500", "Meer dan 2.500, maatwerk"],
   },
   {
-    label: "Feedbeheer per kanaal",
-    values: ["—", "Ja", "Ja", "Ja"],
+    label: "Gebruikers",
+    values: ["2", "5", "10", "Onbeperkt"],
   },
   {
-    label: "Pricing intelligence",
-    values: ["—", "—", "Ja", "Ja"],
+    label: "Talen",
+    values: ["2", "5", "10", "Onbeperkt"],
   },
   {
-    label: "Multi company governance",
-    values: ["—", "—", "Ja", "Ja"],
+    label: "Functies",
+    values: ["Alle functies", "Alle functies", "Alle functies", "Alle functies"],
   },
   {
-    label: "API's en webhooks",
-    values: ["Basis", "Basis", "Geavanceerd", "Geavanceerd"],
+    label: "Uitbreidingen",
+    values: ["Niet beschikbaar", "Beschikbaar", "Beschikbaar", "Maatwerk"],
   },
   {
-    label: "Implementatiebegeleiding",
-    values: ["Self-service", "Remote", "Priority", "Dedicated"],
+    label: "Aankoop",
+    values: ["Online", "Online", "Online", "Op aanvraag"],
   },
 ];
 
 export const pricingFaq = [
   {
-    question: "Kan Syntrx per entiteit of land worden ingericht?",
+    question: "Welk pakket heb ik nodig?",
     answer:
-      "Ja. De architectuur is voorbereid op multi company scenario's met gedeelde standaarden en lokale uitzonderingen.",
+      "Start is bedoeld tot 250 SKU's, Pro tot 500 SKU's en Pro+ tot 2.500 SKU's. Boven 2.500 SKU's valt een organisatie onder Enterprise en stemmen we capaciteit en implementatie af op de situatie.",
   },
   {
-    question: "Zitten integraties in ieder plan?",
+    question: "Wat is het verschil tussen jaarlijks en maandelijks?",
     answer:
-      "Iedere editie ondersteunt koppelingen, maar het niveau van orkestratie, governance en maatwerk verschilt per plan.",
+      "Jaarlijks is de voordeligste optie en toont de maandprijs bij een contract van twaalf maanden. Maandelijks biedt meer flexibiliteit tegen een hogere maandprijs.",
   },
   {
-    question: "Is er een online checkout of Stripe flow?",
+    question: "Zijn alle Syntrx functies beschikbaar?",
     answer:
-      "Nee. Deze eerste versie toont alleen de prijsarchitectuur. Commerciële prijzen en Stripe identifiers worden later centraal geconfigureerd.",
+      "Ja. De kernfunctionaliteit van Syntrx is in alle vier pakketten beschikbaar. Start heeft geen betaalde uitbreidingen, vanaf Pro kan de omgeving verder worden uitgebreid.",
   },
   {
-    question: "Ondersteunt Syntrx onboarding voor teams en leveranciers?",
+    question: "Hoe werkt kopen via de website?",
     answer:
-      "Ja. Het platform is gericht op gecontroleerde import, validatie en publicatie over interne teams en externe dataleveranciers.",
+      "Bij Start, Pro en Pro+ gaat Koop nu naar de beveiligde Syntrx omgeving. Na inloggen kiest de organisatie dezelfde looptijd en wordt de Stripe checkout geopend. Enterprise loopt via contact en een maatwerkvoorstel.",
+  },
+  {
+    question: "Zijn er implementatiekosten?",
+    answer:
+      "Ja. Naast het abonnement kunnen eenmalige implementatiekosten gelden. De exacte implementatieomvang wordt vooraf afgestemd en bevestigd.",
   },
 ];
