@@ -7,9 +7,9 @@ export type Plan = {
   recommended?: boolean;
   features: string[];
   price: Record<BillingPeriod, string>;
+  annualTotalLabel?: string;
   setupCostLabel: string;
   trialLabel: string;
-  trialHref: string;
   purchaseLabel: string;
   contactHref?: string;
 };
@@ -20,17 +20,17 @@ export const pricingPlans: Plan[] = [
     name: "Start",
     tagline: "Voor groeiende organisaties",
     price: { maand: "€ 349", jaar: "€ 299" },
+    annualTotalLabel: "€ 3.588 per jaar",
     setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
       "250 SKU's",
       "2 gebruikers",
       "2 talen",
-      "Alle functies",
-      "Add-ons niet beschikbaar",
+      "Alle Syntrx kernfuncties",
+      "Geen betaalde uitbreidingen",
     ],
-    trialLabel: "Probeer Syntrx",
-    trialHref: "/contact#demo-aanvraag",
-    purchaseLabel: "Koop nu",
+    trialLabel: "9 dagen Pro proberen",
+    purchaseLabel: "Kies Start",
   },
   {
     code: "growth",
@@ -38,51 +38,50 @@ export const pricingPlans: Plan[] = [
     tagline: "Voor grotere organisaties",
     recommended: true,
     price: { maand: "€ 699", jaar: "€ 599" },
+    annualTotalLabel: "€ 7.188 per jaar",
     setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
       "500 SKU's",
       "5 gebruikers",
       "5 talen",
-      "Alle functies",
-      "Opschalen met uitbreidingen",
+      "Alle Syntrx kernfuncties",
+      "Uitbreiden met add ons",
     ],
-    trialLabel: "Probeer Syntrx",
-    trialHref: "/contact#demo-aanvraag",
-    purchaseLabel: "Koop nu",
+    trialLabel: "9 dagen Pro proberen",
+    purchaseLabel: "Kies Pro",
   },
   {
     code: "scale",
     name: "Pro+",
     tagline: "Voor zeer grote organisaties",
     price: { maand: "€ 1.049", jaar: "€ 899" },
+    annualTotalLabel: "€ 10.788 per jaar",
     setupCostLabel: "+ eenmalige implementatiekosten",
     features: [
       "2.500 SKU's",
       "10 gebruikers",
       "10 talen",
-      "Alle functies",
-      "Opschalen met uitbreidingen",
+      "Alle Syntrx kernfuncties",
+      "Uitbreiden met add ons",
     ],
-    trialLabel: "Probeer Syntrx",
-    trialHref: "/contact#demo-aanvraag",
-    purchaseLabel: "Koop nu",
+    trialLabel: "9 dagen Pro proberen",
+    purchaseLabel: "Kies Pro+",
   },
   {
     code: "enterprise",
     name: "Enterprise",
-    tagline: "Voor grote bedrijven",
-    price: { maand: "Aangepast", jaar: "Aangepast" },
-    setupCostLabel: "+ eenmalige implementatiekosten",
+    tagline: "Voor organisaties met maatwerkbehoeften",
+    price: { maand: "Maatwerk", jaar: "Maatwerk" },
+    setupCostLabel: "Implementatie en capaciteit op maat",
     features: [
       "Meer dan 2.500 SKU's",
       "Onbeperkt aantal gebruikers",
       "Onbeperkt talen",
-      "Alle functies",
-      "Opschalen met uitbreidingen",
+      "Alle Syntrx kernfuncties",
+      "Uitbreidingen en maatwerk",
     ],
-    trialLabel: "Probeer Syntrx",
-    trialHref: "/contact#demo-aanvraag",
-    purchaseLabel: "Neem contact op",
+    trialLabel: "9 dagen Pro proberen",
+    purchaseLabel: "Bespreek Enterprise",
     contactHref: "/contact#demo-aanvraag",
   },
 ];
@@ -110,11 +109,16 @@ export const comparisonRows = [
   },
   {
     label: "Aankoop",
-    values: ["Online", "Online", "Online", "Op aanvraag"],
+    values: ["Online via Stripe", "Online via Stripe", "Online via Stripe", "Op aanvraag"],
   },
 ];
 
 export const pricingFaq = [
+  {
+    question: "Hoe werkt de proefperiode?",
+    answer:
+      "Een nieuwe organisatie krijgt één proefperiode van 9 dagen met Pro toegang. Je hebt geen betaalkaart nodig om te starten. Kies je tijdens de proefperiode al een betaald pakket, dan blijft de bestaande proefperiode doorlopen en gaat het gekozen abonnement daarna in.",
+  },
   {
     question: "Welk pakket heb ik nodig?",
     answer:
@@ -131,9 +135,9 @@ export const pricingFaq = [
       "Ja. De kernfunctionaliteit van Syntrx is in alle vier pakketten beschikbaar. Start heeft geen betaalde uitbreidingen, vanaf Pro kan de omgeving verder worden uitgebreid.",
   },
   {
-    question: "Hoe werkt kopen via de website?",
+    question: "Hoe werkt betalen?",
     answer:
-      "Bij Start, Pro en Pro+ gaat Koop nu naar de beveiligde Syntrx omgeving. Na inloggen kiest de organisatie dezelfde looptijd en wordt de Stripe checkout geopend. Enterprise loopt via contact en een maatwerkvoorstel.",
+      "Start, Pro en Pro+ worden veilig afgerekend via Stripe in de ingelogde Syntrx omgeving. Daardoor blijft het abonnement altijd gekoppeld aan de juiste organisatie. Enterprise loopt via contact en een maatwerkvoorstel.",
   },
   {
     question: "Zijn er implementatiekosten?",
