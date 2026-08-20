@@ -1,28 +1,7 @@
 import type { BillingPeriod, Plan } from "@/config/pricing";
 
 import { cn } from "@/lib/utils";
-import { siteConfig } from "@/config/site";
-
-function appEntryHref(next: string, mode: "login" | "register") {
-  const query = new URLSearchParams({
-    mode,
-    source: "website",
-    next,
-  });
-  return `${siteConfig.appUrl}/auth/login?${query.toString()}`;
-}
-
-function trialHref() {
-  return appEntryHref("/licentie?trial=1", "register");
-}
-
-function purchaseHref(plan: Plan, billing: BillingPeriod) {
-  if (plan.code === "enterprise") return plan.contactHref ?? "/contact#demo-aanvraag";
-
-  const appBilling = billing === "jaar" ? "year" : "month";
-  const next = `/licentie?plan=${encodeURIComponent(plan.code)}&billing=${appBilling}&startCheckout=1`;
-  return appEntryHref(next, "login");
-}
+import { purchaseAppHref, trialAppHref } from "@/lib/commercial-links";
 
 export function PricingCard({ plan, billing }: { plan: Plan; billing: BillingPeriod }) {
   const customPrice = plan.code === "enterprise";
@@ -80,7 +59,7 @@ export function PricingCard({ plan, billing }: { plan: Plan; billing: BillingPer
           </a>
         ) : (
           <a
-            href={purchaseHref(plan, billing)}
+            href={purchaseAppHref(plan, billing)}
             className={cn(
               "flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-colors",
               plan.recommended
@@ -93,7 +72,7 @@ export function PricingCard({ plan, billing }: { plan: Plan; billing: BillingPer
         )}
 
         <a
-          href={trialHref()}
+          href={trialAppHref()}
           className="flex w-full items-center justify-center rounded-xl border border-[var(--color-border)] bg-white px-4 py-3 text-sm font-semibold text-[var(--color-text)] transition-colors hover:border-[var(--color-accent)] hover:bg-[var(--color-surface)]"
         >
           {plan.trialLabel}
