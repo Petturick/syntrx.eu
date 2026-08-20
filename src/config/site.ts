@@ -9,11 +9,10 @@ export const siteConfig = {
   primaryCtaLabel: "Plan een demo",
   secondaryCtaLabel: "Bekijk het platform",
   navigation: [
-    { label: "Product", href: "/product" },
     { label: "Oplossingen", href: "/oplossingen" },
     { label: "Integraties", href: "/integraties" },
     { label: "Pricing", href: "/pricing" },
-    { label: "Resources", href: "/resources" },
+    { label: "Over Syntrx", href: "/over-syntrx" },
   ],
   footerNavigation: [
     {
