@@ -19,6 +19,6 @@ export function purchaseAppHref(plan: Plan, billing: BillingPeriod) {
   if (plan.code === "enterprise") return plan.contactHref ?? "/contact#demo-aanvraag";
 
   const appBilling = billing === "jaar" ? "year" : "month";
-  const next = `/licentie?plan=${encodeURIComponent(plan.code)}&billing=${appBilling}&startCheckout=1`;
+  const next = `/licentie?plan=${encodeURIComponent(plan.code)}&billing=${appBilling}`;
   return appEntryHref(next, "login");
 }
